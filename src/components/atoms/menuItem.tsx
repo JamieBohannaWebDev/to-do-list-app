@@ -1,11 +1,5 @@
 import React from 'react';
-
-interface MenuItemProps {
-    icon: React.JSX.Element;
-    label: string;
-    value: number;
-    onClickEvent: () => void;
-}
+import { MenuItemProps } from '../../interfaces/menuItemProps'
 
 const MenuItem = ({ icon, label, value, onClickEvent }: MenuItemProps) => {
     const tailwindClasses = 'flex items-center cursor-pointer';
