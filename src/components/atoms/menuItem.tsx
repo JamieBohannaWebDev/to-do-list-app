@@ -1,13 +1,13 @@
 import React from 'react';
 
 interface MenuItemProps {
-    icon: React.ReactNode;
+    icon: React.JSX.Element;
     label: string;
     value: number;
     onClickEvent: () => void;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ icon, label, value, onClickEvent }) => {
+const MenuItem = ({ icon, label, value, onClickEvent }: MenuItemProps) => {
     const tailwindClasses = 'flex items-center cursor-pointer';
 	return (
         <div onClick={onClickEvent} className={tailwindClasses}>
