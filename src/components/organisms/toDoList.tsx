@@ -1,8 +1,17 @@
-import React from 'react';
-import AddNewTask from '../atoms/addNewTask';
+import React, { KeyboardEventHandler } from 'react';
+import { Divider } from '@mui/material';
+import { AddRounded } from '@mui/icons-material';
+import { TaskProps } from '../../interfaces/taskProps';
+import AddNewInput from '../atoms/addNewInput';
 import Task from '../atoms/task';
 
 const ToDoList = () => {
+  const [tasks, setTasks] = React.useState<TaskProps[]>([]);
+
+  const handleNewTask = (value: string) => {
+    setTasks([...tasks, {id: tasks.length + 1, name: value, status: 'due', createdAt: new Date(), requiredBy: new Date()}]);
+  }
+
 	return (
 		<main className="flex p-5 w-full flex-col">
 			<div className="flex mb-10">
@@ -12,15 +21,13 @@ const ToDoList = () => {
 				</p>
 			</div>
 
-			<AddNewTask />
+      <AddNewInput icon={<AddRounded />} placeholder='Add new task' onEnterEvent={handleNewTask} />
 
-			<Task />
-			<Task />
-			<Task />
-			<Task />
-			<Task />
+      {tasks.map((task) => (
+        <Task key={task.id} id={task.id} name={task.name} status={task.status} createdAt={task.createdAt} requiredBy={task.requiredBy} />
+      ))}
 
-
+      <Divider />
 			{/* Completed tasks component */}
 		</main>
 	);
