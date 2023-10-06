@@ -2,9 +2,9 @@ import React from 'react'
 import SideMenu from '../../components/organisms/sideMenu'
 import ToDoList from '../../components/organisms/toDoList'
 
-function Dashboard() {
+const Dashboard = () => {
   return (
-    <main className='flex h-screen'>
+    <main className='flex'>
         <SideMenu></SideMenu>
         <ToDoList></ToDoList>
     </main>
