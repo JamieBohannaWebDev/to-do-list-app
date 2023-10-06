@@ -6,7 +6,7 @@ import SettingsMenu from '../molecules/settingsMenu';
 const SideMenu = () => {
 	return (
 		<section className="w-2/5 flex flex-col border h-screen border-red-100 p-5">
-			<h2>Menu</h2>
+			<h2 className="mb-10 text-2xl font-bold">Menu</h2>
 			<div className="flex justify-between flex-col grow">
         <div>
           <TaskMenu></TaskMenu>

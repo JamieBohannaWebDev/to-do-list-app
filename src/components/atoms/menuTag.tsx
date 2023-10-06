@@ -4,7 +4,9 @@ import { Chip } from '@mui/material';
 
 const MenuTag = ({ label, color, size, onClickEvent }: MenuTagProps) => {
   return (
-    <Chip label={label} color={color} size={size} onClick={onClickEvent} />
+    <div className="mr-1 inline">
+      <Chip label={label} color={color} size={size} onClick={onClickEvent} />
+    </div>
   )
 }
 

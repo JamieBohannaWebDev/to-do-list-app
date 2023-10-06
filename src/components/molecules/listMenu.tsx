@@ -7,29 +7,29 @@ const ListMenu = () => {
 		console.log('Item clicked!');
 	};
 	return (
-		<>
-			<h3>Lists</h3>
+		<div className="mb-10">
+			<h3 className="mb-2 text-xs font-semibold uppercase">Lists</h3>
 			<MenuItem
-				icon={<SquareRounded />}
+				icon={<SquareRounded color='error' />}
 				label={'Personal List'}
 				value={12}
 				onClickEvent={handleItemClick}
 			/>
 
 			<MenuItem
-				icon={<SquareRounded />}
+				icon={<SquareRounded color='primary' />}
 				label={'Work List'}
 				value={12}
 				onClickEvent={handleItemClick}
 			/>
 
 			<MenuItem
-				icon={<SquareRounded />}
+				icon={<SquareRounded color='warning' />}
 				label={'Home List'}
 				value={12}
 				onClickEvent={handleItemClick}
 			/>
-		</>
+		</div>
 	);
 };
 

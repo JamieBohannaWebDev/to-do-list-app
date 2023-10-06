@@ -8,36 +8,36 @@ const TaskMenu = () => {
 		console.log('Item clicked!');
 	};
 	return (
-		<>
-		<h3>Tasks</h3>
+		<div className="mb-10">
+		<h3 className="mb-2 text-xs font-semibold uppercase">Tasks</h3>
 			<MenuItem
-				icon={<UpcomingRounded />}
+				icon={<UpcomingRounded color='warning' />}
 				label={'Upcoming'}
 				value={12}
 				onClickEvent={handleItemClick}
 			/>
 
 			<MenuItem
-				icon={<TodayRounded />}
+				icon={<TodayRounded color='secondary' />}
 				label={'Today'}
 				value={4}
 				onClickEvent={handleItemClick}
 			/>
 
 			<MenuItem
-				icon={<NextWeekRounded />}
+				icon={<NextWeekRounded color='info' />}
 				label={'Next Week'}
 				value={15}
 				onClickEvent={handleItemClick}
 			/>
 
 			<MenuItem
-				icon={<CheckCircleRounded />}
+				icon={<CheckCircleRounded color='success' />}
 				label={'Completed'}
 				value={19}
 				onClickEvent={handleItemClick}
 			/>
-		</>
+		</div>
 	);
 }
 
