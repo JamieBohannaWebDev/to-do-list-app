@@ -1,17 +1,29 @@
-import React from 'react'
+import React from 'react';
+import AddNewTask from '../atoms/addNewTask';
+import Task from '../atoms/task';
 
 const ToDoList = () => {
-  return (
-    <main className='flex w-full justify-center flex-col items-center'>
-      <div className='flex'><h1>Today</h1><p>5</p></div>
-      
-      {/* Add new task component */}
+	return (
+		<main className="flex p-5 w-full flex-col">
+			<div className="flex mb-10">
+				<h1 className="text-5xl font-bold">Today</h1>
+				<p className="font-bold text-4xl border rounded min-w-[50px] mt-2 text-center ml-5">
+					5
+				</p>
+			</div>
 
-      {/* Item component */}
+			<AddNewTask />
 
-      {/* Completed tasks component */}
-    </main>
-  )
-}
+			<Task />
+			<Task />
+			<Task />
+			<Task />
+			<Task />
 
-export default ToDoList
+
+			{/* Completed tasks component */}
+		</main>
+	);
+};
+
+export default ToDoList;
