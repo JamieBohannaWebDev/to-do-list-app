@@ -65,7 +65,7 @@ const TaskMenu = () => {
 				icon={<TodayRounded color={incompleteTasksForToday.length > 0 ? 'secondary' : 'success'} />}
 				label={'Due Today'}
 				value={incompleteTasksForToday.length}
-				onClickEvent={() => handleItemClick(null)}
+				onClickEvent={() => handleItemClick(FilterBy.DUE)}
 			/>
 
 			<MenuItem

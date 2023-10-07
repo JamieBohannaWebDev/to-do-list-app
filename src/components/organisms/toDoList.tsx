@@ -27,7 +27,7 @@ const ToDoList = () => {
 				return tasks.filter(task => task.status === TaskStatus.NOT_DUE);
 			case 'due':
 				setTitle('Tasks Due Today');
-				return tasks.filter(task => task.status === TaskStatus.DUE);
+				return tasks.filter(task => (task.status === TaskStatus.DUE || task.status === TaskStatus.OVERDUE));
 			case 'overdue':
 				setTitle('Overdue Tasks');
 				return tasks.filter(task => task.status === TaskStatus.OVERDUE);
@@ -56,7 +56,7 @@ const ToDoList = () => {
 	}, [tasks, filterBy]);
 
 	const incompleteFilteredTasks = React.useMemo(
-		() => filteredTasks.filter(task => !task.completed && (task.status === TaskStatus.DUE || task.status === TaskStatus.OVERDUE)),
+		() => filteredTasks.filter(task => !task.completed),
 		[filteredTasks]
 	);
 
@@ -66,7 +66,7 @@ const ToDoList = () => {
 	);
 
 	const completedFilteredTasks = React.useMemo(
-		() => filteredTasks.filter(task => task.completed && task.status === TaskStatus.DUE),
+		() => filteredTasks.filter(task => task.completed),
 		[filteredTasks]
 	);
 	
