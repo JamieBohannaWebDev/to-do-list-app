@@ -6,12 +6,15 @@ import {
 	TodayRounded,
 	ReportProblemRounded,
 } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { TaskStatus } from '../../interfaces/taskType';
+import { FilterBy } from '../../interfaces/filterBy';
+import { taskSlice } from '../../slices/tasks/taskSlice';
 
 const TaskMenu = () => {
 	const tasks = useSelector((state: RootState) => state.tasks.tasks);
+	const dispatch = useDispatch();
 
 	const overdueTasks = React.useMemo(
 		() =>
@@ -40,9 +43,10 @@ const TaskMenu = () => {
 		[tasks]
 	);
 
-	const handleItemClick = () => {
-		console.log('Item clicked!');
+	const handleItemClick = (filterType: FilterBy | null) => {
+		dispatch(taskSlice.actions.filterBy(filterType));
 	};
+
 	return (
 		<div className="mb-10">
 			<h3 className="mb-2 text-xs font-semibold uppercase">Tasks</h3>
@@ -54,28 +58,28 @@ const TaskMenu = () => {
 				}
 				label={'Overdue'}
 				value={overdueTasks.length}
-				onClickEvent={handleItemClick}
+				onClickEvent={() => handleItemClick(FilterBy.OVERDUE)}
 			/>
 
 			<MenuItem
 				icon={<TodayRounded color={incompleteTasksForToday.length > 0 ? 'secondary' : 'success'} />}
 				label={'Due Today'}
 				value={incompleteTasksForToday.length}
-				onClickEvent={handleItemClick}
+				onClickEvent={() => handleItemClick(null)}
 			/>
 
 			<MenuItem
 				icon={<WatchLaterRounded color={upcomingTasks.length > 0 ? 'info' : 'success'} />}
 				label={'Upcoming'}
 				value={upcomingTasks.length}
-				onClickEvent={handleItemClick}
+				onClickEvent={() => handleItemClick(FilterBy.NOTDUE)}
 			/>
 
 			<MenuItem
 				icon={<CheckCircleRounded color="success" />}
 				label={'Completed'}
 				value={completedTasks.length}
-				onClickEvent={handleItemClick}
+				onClickEvent={() => handleItemClick(FilterBy.COMPLETED)}
 			/>
 		</div>
 	);

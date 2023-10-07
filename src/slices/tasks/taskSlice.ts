@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '../../interfaces/taskType';
+import { FilterBy } from '../../interfaces/filterBy';
 
 export interface TaskState {
     tasks: TaskType[];
+    filterBy: FilterBy | null;
     sideMenu: {
         isOpen: boolean;
         selectedTask: TaskType | null;
@@ -12,6 +14,7 @@ export interface TaskState {
 
 const initialState: TaskState = {
     tasks: [],
+    filterBy: null,
     sideMenu: {
         isOpen: false,
         selectedTask: null,
@@ -30,6 +33,9 @@ export const taskSlice = createSlice({
             if (index !== -1) {
                 state.tasks[index].completed = !state.tasks[index].completed;
             }
+        },
+        filterBy: (state, action: PayloadAction<FilterBy | null>) => {
+            state.filterBy = action.payload;
         },
         editTask: (state, action: PayloadAction<{ id: string }>) => {
             const task = state.tasks.find((task) => task.id === action.payload.id);
@@ -55,6 +61,6 @@ export const taskSlice = createSlice({
     },
 });
 
-export const { addTask, completeTask, editTask, saveTask, deleteTask, closeSideMenu } = taskSlice.actions;
+export const { addTask, completeTask, editTask, saveTask, deleteTask, closeSideMenu, filterBy } = taskSlice.actions;
 
 export default taskSlice.reducer;

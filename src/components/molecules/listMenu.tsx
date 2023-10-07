@@ -1,12 +1,15 @@
 import React from 'react';
 import MenuItem from '../atoms/menuItem';
 import { SquareRounded } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ListTypes } from '../../interfaces/listType';
+import { FilterBy } from '../../interfaces/filterBy';
+import { taskSlice } from '../../slices/tasks/taskSlice';
 
 const ListMenu = () => {
 	const tasks = useSelector((state: RootState) => state.tasks.tasks);
+	const dispatch = useDispatch();
 
 	const personalListTasks = React.useMemo(
 		() => tasks.filter((task) => task.listType === ListTypes.PERSONAL),
@@ -21,9 +24,10 @@ const ListMenu = () => {
 		[tasks]
 	);
 	
-	const handleItemClick = () => {
-		console.log('Item clicked!');
+	const handleItemClick = (filterType: FilterBy) => {
+		dispatch(taskSlice.actions.filterBy(filterType));
 	};
+	
 	return (
 		<div className="mb-10">
 			<h3 className="mb-2 text-xs font-semibold uppercase">Lists</h3>
@@ -31,21 +35,21 @@ const ListMenu = () => {
 				icon={<SquareRounded color='error' />}
 				label={ListTypes.WORK}
 				value={workListTasks.length}
-				onClickEvent={handleItemClick}
+				onClickEvent={() => handleItemClick(FilterBy.WORKLIST)}
 			/>
 
 			<MenuItem
 				icon={<SquareRounded color='primary' />}
 				label={ListTypes.PERSONAL}
 				value={personalListTasks.length}
-				onClickEvent={handleItemClick}
+				onClickEvent={() => handleItemClick(FilterBy.PERSONALLIST)}
 			/>
 
 			<MenuItem
 				icon={<SquareRounded color='warning' />}
 				label={ListTypes.STUDY}
 				value={studyListTasks.length}
-				onClickEvent={handleItemClick}
+				onClickEvent={() => handleItemClick(FilterBy.STUDYLIST)}
 			/>
 		</div>
 	);
