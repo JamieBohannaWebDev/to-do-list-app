@@ -65,7 +65,7 @@ const TaskMenu = () => {
 			/>
 
 			<MenuItem
-				icon={<WatchLaterRounded color="info" />}
+				icon={<WatchLaterRounded color={upcomingTasks.length > 0 ? 'info' : 'success'} />}
 				label={'Upcoming'}
 				value={upcomingTasks.length}
 				onClickEvent={handleItemClick}
