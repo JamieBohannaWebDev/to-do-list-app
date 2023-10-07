@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, Divider } from '@mui/material';
-import { TaskComponentProps } from '../../interfaces/taskProps';
+import { TaskComponentProps } from '../../interfaces/taskType';
 
 const Task = ({
 	id,

@@ -2,8 +2,10 @@ export interface MenuTagProps {
     label: string;
     size: TagChipSize;
     color: TagChipColor;
-    onClickEvent: () => void;
+    variant: TagVariant;
+    onClickEvent: (label: string) => void;
 }
 
 type TagChipColor = 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 type TagChipSize = 'medium' | 'small';
+type TagVariant = 'outlined' | 'filled';

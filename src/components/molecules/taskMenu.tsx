@@ -8,7 +8,7 @@ import {
 } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { TaskStatus } from '../../interfaces/taskProps';
+import { TaskStatus } from '../../interfaces/taskType';
 
 const TaskMenu = () => {
 	const tasks = useSelector((state: RootState) => state.tasks.tasks);
