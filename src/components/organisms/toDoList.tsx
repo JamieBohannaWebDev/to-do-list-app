@@ -7,7 +7,6 @@ import { v4 as uuid } from 'uuid';
 import { TaskType, TaskStatus } from '../../interfaces/taskType';
 import AddNewInput from '../atoms/addNewInput';
 import Task from '../atoms/task';
-import { ListTypes } from '../../interfaces/listType';
 
 const ToDoList = () => {
 	const tasks = useSelector((state: RootState) => state.tasks.tasks);
@@ -21,8 +20,8 @@ const ToDoList = () => {
 			createdAt: new Date().toISOString(),
 			requiredBy: new Date().toISOString(),
 			completed: false,
-			listType: ListTypes.NONE,
-			tag: ''
+			listType: null,
+			tag: null
 		};
 
 		dispatch(taskSlice.actions.addTask(newTask));
