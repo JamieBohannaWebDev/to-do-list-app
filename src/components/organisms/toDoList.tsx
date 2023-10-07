@@ -61,7 +61,7 @@ const ToDoList = () => {
 			</header>
 
 			<AddNewInput
-				icon={<AddRounded />}
+				icon={<AddRounded className="text-gray-400" />}
 				placeholder="Add new task"
 				onEnterEvent={createNewTask}
 			/>
