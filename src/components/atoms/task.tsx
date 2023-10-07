@@ -35,6 +35,7 @@ const Task = ({
 	};
 
 	const calculateMenuColor = React.useMemo(() => {
+		console.log(tag);
 		switch (tag) {
 			case 'Easy':
 				return 'success';
@@ -77,7 +78,7 @@ const Task = ({
 							<MenuItem icon={calculateListIcon} label={listType} onClickEvent={handleListClick} />
 						</div>
 					)}
-					{tag !==  null && (
+					{(tag !== null && tag !== '') && (
 						<div className="mt-2">
 							<MenuTag
 								label={tag}
