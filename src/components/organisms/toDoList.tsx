@@ -4,9 +4,10 @@ import { taskSlice } from '../../slices/tasks/taskSlice';
 import { RootState } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import { TaskProps, TaskStatus } from '../../interfaces/taskProps';
+import { TaskType, TaskStatus } from '../../interfaces/taskType';
 import AddNewInput from '../atoms/addNewInput';
 import Task from '../atoms/task';
+import { ListTypes } from '../../interfaces/listType';
 
 const ToDoList = () => {
 	const tasks = useSelector((state: RootState) => state.tasks.tasks);
@@ -20,6 +21,8 @@ const ToDoList = () => {
 			createdAt: new Date().toISOString(),
 			requiredBy: new Date().toISOString(),
 			completed: false,
+			listType: ListTypes.NONE,
+			tag: ''
 		};
 
 		dispatch(taskSlice.actions.addTask(newTask));
@@ -42,7 +45,7 @@ const ToDoList = () => {
 		[tasks]
 	);
 
-	const renderTask = (task: TaskProps) => (
+	const renderTask = (task: TaskType) => (
 		<Task
 			key={task.id}
 			id={task.id}
@@ -51,6 +54,8 @@ const ToDoList = () => {
 			createdAt={task.createdAt}
 			requiredBy={task.requiredBy}
 			completed={task.completed}
+			listType={task.listType}
+			tag={task.tag}
 			onTaskCompletion={completeTask}
 			onTaskEdit={editTask}
 		/>
