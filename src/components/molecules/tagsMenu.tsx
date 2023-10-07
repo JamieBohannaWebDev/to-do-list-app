@@ -7,10 +7,10 @@ const TagsMenu = () => {
   }
   return (
     <div className="mb-10">
-      <h3 className="mb-2 text-xs font-semibold uppercase">Tags</h3>
-      <MenuTag label={'Personal'} size={'small'} color={'info'} onClickEvent={handleItemClick} />
-      <MenuTag label={'Work'} size={'small'} color={'error'} onClickEvent={handleItemClick} />
-      <MenuTag label={'Home'} size={'small'} color={'success'} onClickEvent={handleItemClick} />
+      <h3 className="mb-2 text-xs font-semibold uppercase">Difficulty Tags</h3>
+      <MenuTag label={'Easy'} size={'small'} color={'success'} onClickEvent={handleItemClick} />
+      <MenuTag label={'Normal'} size={'small'} color={'info'} onClickEvent={handleItemClick} />
+      <MenuTag label={'Hard'} size={'small'} color={'error'} onClickEvent={handleItemClick} />
     </div>
   )
 }
