@@ -4,13 +4,13 @@ import { taskSlice } from '../../slices/tasks/taskSlice';
 import { RootState } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import { TaskStatus } from '../../interfaces/taskProps';
+import { TaskProps, TaskStatus } from '../../interfaces/taskProps';
 import AddNewInput from '../atoms/addNewInput';
 import Task from '../atoms/task';
 
 const ToDoList = () => {
-	const dispatch = useDispatch();
 	const tasks = useSelector((state: RootState) => state.tasks.tasks);
+	const dispatch = useDispatch();
 
 	const createNewTask = (value: string) => {
 		const newTask = {
@@ -29,55 +29,50 @@ const ToDoList = () => {
 		dispatch(taskSlice.actions.completeTask({ id }));
 	};
 
-	const incompleteTasks = React.useMemo(() => {
-		return tasks.filter((task) => !task.completed);
-	}, [tasks]);
-	const completedTasks = React.useMemo(() => {
-		return tasks.filter((task) => task.completed);
-	}, [tasks]);
+	const incompleteTasks = React.useMemo(
+		() => tasks.filter((task) => !task.completed),
+		[tasks]
+	);
+	const completedTasks = React.useMemo(
+		() => tasks.filter((task) => task.completed),
+		[tasks]
+	);
+
+	const renderTask = (task: TaskProps) => (
+		<Task
+			key={task.id}
+			id={task.id}
+			name={task.name}
+			status={task.status}
+			createdAt={task.createdAt}
+			requiredBy={task.requiredBy}
+			completed={task.completed}
+			onTaskCompletion={completeTask}
+		/>
+	);
 
 	return (
 		<main className="flex p-5 w-full flex-col">
-			<div className="flex mb-10">
+			<header className="flex mb-10">
 				<h1 className="text-5xl font-bold">Today</h1>
 				<p className="font-bold text-4xl border rounded min-w-[50px] mt-2 text-center ml-5">
-					{tasks.filter((task) => !task.completed).length}
+					{incompleteTasks.length}
 				</p>
-			</div>
+			</header>
 
 			<AddNewInput
 				icon={<AddRounded />}
 				placeholder="Add new task"
 				onEnterEvent={createNewTask}
 			/>
-			{incompleteTasks.map((task) => (
-				<Task
-					key={task.id}
-					id={task.id}
-					name={task.name}
-					status={task.status}
-					createdAt={task.createdAt}
-					requiredBy={task.requiredBy}
-					completed={task.completed}
-					onTaskCompletion={completeTask}
-				/>
-			))}
+
+			{incompleteTasks.map(renderTask)}
+
 			{completedTasks.length > 0 && (
 				<h3 className="text-xl font-bold mt-10">Completed</h3>
 			)}
 
-			{completedTasks.map((task) => (
-				<Task
-					key={task.id}
-					id={task.id}
-					name={task.name}
-					status={task.status}
-					createdAt={task.createdAt}
-					requiredBy={task.requiredBy}
-					completed={task.completed}
-					onTaskCompletion={completeTask}
-				/>
-			))}
+			{completedTasks.map(renderTask)}
 		</main>
 	);
 };
