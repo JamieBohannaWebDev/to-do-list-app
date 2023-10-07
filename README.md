@@ -32,7 +32,7 @@ Jamie Bohanna
 Nothing special, just fire off `npm run start` and you're good to go!
 
 ## Project structure
-
+```
 📁 src
 ┣ 📁 components
 ┃ ┣ 📁 atoms
@@ -72,3 +72,4 @@ Nothing special, just fire off `npm run start` and you're good to go!
 ┣ 📜 reportWebVitals.ts
 ┣ 📜 setupTests.ts
 ┗ 📜 store.ts
+```
