@@ -30,3 +30,45 @@ Jamie Bohanna
 ## Running the app
 
 Nothing special, just fire off `npm run start` and you're good to go!
+
+## Project structure
+
+📁 src
+┣ 📁 components
+┃ ┣ 📁 atoms
+┃ ┃ ┣ 📜 addNewInput.tsx
+┃ ┃ ┣ 📜 menuItem.tsx
+┃ ┃ ┣ 📜 menuTag.tsx
+┃ ┃ ┗ 📜 task.tsx
+┃ ┣ 📁 molecules
+┃ ┃ ┣ 📜 listMenu.tsx
+┃ ┃ ┣ 📜 settingsMenu.tsx
+┃ ┃ ┣ 📜 tagsMenu.tsx
+┃ ┃ ┗ 📜 taskMenu.tsx
+┃ ┗ 📁 organisms
+┃   ┣ 📜 editTask.tsx
+┃   ┣ 📜 sideMenu.tsx
+┃   ┗ 📜 toDoList.tsx
+┣ 📁 interfaces
+┃ ┣ 📜 addNewInputProps.ts
+┃ ┣ 📜 filterBy.ts
+┃ ┣ 📜 listType.ts
+┃ ┣ 📜 menuItemProps.ts
+┃ ┣ 📜 menuTagProps.ts
+┃ ┗ 📜 taskType.ts
+┣ 📁 pages
+┃ ┗ 📁 dashboard
+┃   ┗ 📜 dashboard.tsx
+┣ 📁 slices
+┃ ┗ 📁 tasks
+┃   ┗ 📜 taskSlice.ts
+┣ 📜 App.css
+┣ 📜 App.test.tsx
+┣ 📜 App.tsx
+┣ 📜 index.css
+┣ 📜 index.tsx
+┣ 📜 logo.svg
+┣ 📜 react-app-env.d.ts
+┣ 📜 reportWebVitals.ts
+┣ 📜 setupTests.ts
+┗ 📜 store.ts
