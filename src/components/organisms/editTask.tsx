@@ -14,7 +14,7 @@ import { DatePicker } from '@mui/x-date-pickers';
 import MenuTag from '../atoms/menuTag';
 import { SelectChangeEvent } from '@mui/material';
 import moment from 'moment';
-import { TaskType } from '../../interfaces/taskType';
+import { TaskStatus, TaskType } from '../../interfaces/taskType';
 
 const EditTask = () => {
 	const { isOpen, selectedTask } = useSelector(
@@ -31,13 +31,15 @@ const EditTask = () => {
 
 	const listRef = React.useRef<HTMLSelectElement | null>(null);
 	const dateRef = React.useRef<HTMLInputElement | null>(null);
-	
+
 	const dispatch = useDispatch();
 
 	React.useEffect(() => {
 		if (selectedTask) {
 			setSelectedList(selectedTask.listType || 'None');
-			setSelectedDate(selectedTask.requiredBy ? moment(selectedTask.requiredBy) : null);
+			setSelectedDate(
+				selectedTask.requiredBy ? moment(selectedTask.requiredBy) : null
+			);
 			setSelectedTag(selectedTask.tag || '');
 		}
 	}, [selectedTask]);
@@ -50,11 +52,23 @@ const EditTask = () => {
 
 	const handleSaveTask = () => {
 		if (selectedTask?.id) {
+			const today = moment().startOf('day');
+			let status = selectedTask?.status; // defaulting to the current status
+
+			if (selectedDate) {
+				if (selectedDate.isSame(today, 'day')) {
+				} else if (selectedDate.isAfter(today)) {
+					status = TaskStatus.NOT_DUE;
+				} else if (selectedDate.isBefore(today)) {
+					status = TaskStatus.OVERDUE;
+				}
+			}
 			setUpdatedTask({
 				...selectedTask,
 				listType: selectedList === 'None' ? null : selectedList,
 				requiredBy: selectedDate?.toISOString() || '',
 				tag: selectedTag,
+				status: status,
 			});
 			dispatch(taskSlice.actions.closeSideMenu());
 		}
@@ -81,7 +95,7 @@ const EditTask = () => {
 
 	const calculateTagVariant = (tagLabel: string) => {
 		return tagLabel === selectedTag ? 'filled' : 'outlined';
-	}
+	};
 
 	const deleteBtnStyles =
 		'border border-slate-600 text-slate-600 hover:bg-red-600 hover:border-red-600 hover:text-white transition-all ease-in-out mr-2 px-5 py-2 rounded-md';

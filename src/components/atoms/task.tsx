@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, Divider } from '@mui/material';
-import { TaskComponentProps } from '../../interfaces/taskType';
+import { TaskComponentProps, TaskStatus } from '../../interfaces/taskType';
 import MenuTag from './menuTag';
 import MenuItem from './menuItem';
 import { ListTypes } from '../../interfaces/listType';
@@ -63,11 +63,11 @@ const Task = ({
 
 	return (
 		<>
-			<div className={`flex justify-between py-1 ${completed ? 'opacity-50 line-through' : 'opacity-100'}`} key={id}>
+			<div className={`flex justify-between py-1 ${status === TaskStatus.OVERDUE ? 'bg-red-200 text-black' : 'text-slate-600'} ${completed ? 'opacity-50 line-through' : 'opacity-100'}`} key={id}>
 				<div className='flex'>
 					<Checkbox checked={completed} onChange={handleChange} />
 					<p
-						className="text-lg cursor-pointer relative top-[6.25px] text-slate-600"
+						className="text-lg cursor-pointer relative top-[6.25px]"
 						onClick={handleEdit}>
 						{name}
 					</p>

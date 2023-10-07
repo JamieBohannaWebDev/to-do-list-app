@@ -36,11 +36,11 @@ const ToDoList = () => {
 	}
 
 	const incompleteTasks = React.useMemo(
-		() => tasks.filter((task) => !task.completed),
+		() => tasks.filter((task) => !task.completed && (task.status === TaskStatus.DUE || task.status === TaskStatus.OVERDUE)),
 		[tasks]
 	);
 	const completedTasks = React.useMemo(
-		() => tasks.filter((task) => task.completed),
+		() => tasks.filter((task) => task.completed && task.status === TaskStatus.DUE),
 		[tasks]
 	);
 
