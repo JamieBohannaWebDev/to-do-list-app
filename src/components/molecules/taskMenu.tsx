@@ -1,44 +1,84 @@
 import React from 'react';
 import MenuItem from '../atoms/menuItem';
-import { CheckCircleRounded, NextWeekRounded, TodayRounded, UpcomingRounded } from '@mui/icons-material';
+import {
+	CheckCircleRounded,
+	WatchLaterRounded,
+	TodayRounded,
+	ReportProblemRounded,
+} from '@mui/icons-material';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { TaskStatus } from '../../interfaces/taskProps';
 
 const TaskMenu = () => {
-    
+	const tasks = useSelector((state: RootState) => state.tasks.tasks);
+
+	const overdueTasks = React.useMemo(
+		() =>
+			tasks.filter(
+				(task) => !task.completed && task.status === TaskStatus.OVERDUE
+			),
+		[tasks]
+	);
+
+	const incompleteTasksForToday = React.useMemo(
+		() =>
+			tasks.filter((task) => !task.completed && task.status === TaskStatus.DUE),
+		[tasks]
+	);
+
+	const upcomingTasks = React.useMemo(
+		() =>
+			tasks.filter(
+				(task) => !task.completed && task.status === TaskStatus.NOT_DUE
+			),
+		[tasks]
+	);
+
+	const completedTasks = React.useMemo(
+		() => tasks.filter((task) => task.completed),
+		[tasks]
+	);
+
 	const handleItemClick = () => {
 		console.log('Item clicked!');
 	};
 	return (
 		<div className="mb-10">
-		<h3 className="mb-2 text-xs font-semibold uppercase">Tasks</h3>
+			<h3 className="mb-2 text-xs font-semibold uppercase">Tasks</h3>
 			<MenuItem
-				icon={<UpcomingRounded color='warning' />}
+				icon={
+					<ReportProblemRounded
+						color={overdueTasks.length > 0 ? 'error' : 'success'}
+					/>
+				}
+				label={'Overdue'}
+				value={overdueTasks.length}
+				onClickEvent={handleItemClick}
+			/>
+
+			<MenuItem
+				icon={<TodayRounded color={incompleteTasksForToday.length > 0 ? 'secondary' : 'success'} />}
+				label={'Due Today'}
+				value={incompleteTasksForToday.length}
+				onClickEvent={handleItemClick}
+			/>
+
+			<MenuItem
+				icon={<WatchLaterRounded color="info" />}
 				label={'Upcoming'}
-				value={12}
+				value={upcomingTasks.length}
 				onClickEvent={handleItemClick}
 			/>
 
 			<MenuItem
-				icon={<TodayRounded color='secondary' />}
-				label={'Today'}
-				value={4}
-				onClickEvent={handleItemClick}
-			/>
-
-			<MenuItem
-				icon={<NextWeekRounded color='info' />}
-				label={'Next Week'}
-				value={15}
-				onClickEvent={handleItemClick}
-			/>
-
-			<MenuItem
-				icon={<CheckCircleRounded color='success' />}
+				icon={<CheckCircleRounded color="success" />}
 				label={'Completed'}
-				value={19}
+				value={completedTasks.length}
 				onClickEvent={handleItemClick}
 			/>
 		</div>
 	);
-}
+};
 
 export default TaskMenu;
