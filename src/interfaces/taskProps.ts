@@ -9,6 +9,7 @@ export interface TaskProps {
 
 export interface TaskComponentProps extends TaskProps {
     onTaskCompletion: (id: string) => void;
+    onTaskEdit: (id: string) => void;
 }
 
 export enum TaskStatus {

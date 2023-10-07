@@ -29,6 +29,10 @@ const ToDoList = () => {
 		dispatch(taskSlice.actions.completeTask({ id }));
 	};
 
+	const editTask = (id: string) => {
+		dispatch(taskSlice.actions.editTask({ id }));
+	}
+
 	const incompleteTasks = React.useMemo(
 		() => tasks.filter((task) => !task.completed),
 		[tasks]
@@ -48,6 +52,7 @@ const ToDoList = () => {
 			requiredBy={task.requiredBy}
 			completed={task.completed}
 			onTaskCompletion={completeTask}
+			onTaskEdit={editTask}
 		/>
 	);
 
