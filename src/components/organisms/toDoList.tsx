@@ -1,6 +1,5 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import { Divider } from '@mui/material';
 import { AddRounded } from '@mui/icons-material';
 import { TaskProps } from '../../interfaces/taskProps';
 import AddNewInput from '../atoms/addNewInput';
@@ -23,15 +22,6 @@ const ToDoList = () => {
 		]);
 	};
 
-	const incompleteTasks = React.useMemo(
-		() => tasks.filter((task) => !task.completed),
-		[tasks]
-	);
-	const completedTasks = React.useMemo(
-		() => tasks.filter((task) => task.completed),
-		[tasks]
-	);
-
 	const completeTask = (id: string) => {
 		const updatedTasks = tasks.map((task) => {
 			if (task.id === id) {
@@ -42,6 +32,15 @@ const ToDoList = () => {
 
 		setTasks(updatedTasks);
 	};
+
+	const incompleteTasks = React.useMemo(
+		() => tasks.filter((task) => !task.completed),
+		[tasks]
+	);
+	const completedTasks = React.useMemo(
+		() => tasks.filter((task) => task.completed),
+		[tasks]
+	);
 
 	return (
 		<main className="flex p-5 w-full flex-col">
