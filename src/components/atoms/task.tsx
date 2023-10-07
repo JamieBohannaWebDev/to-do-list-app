@@ -22,9 +22,9 @@ const Task = ({
 
 	return (
 		<>
-			<div className={`flex ${completed ? 'opacity-50 line-through' : 'opacity-100'}`} key={id}>
+			<div className={`flex py-1 ${completed ? 'opacity-50 line-through' : 'opacity-100'}`} key={id}>
 				<Checkbox checked={completed} onChange={handleChange} />
-				<p className="text-xl cursor-pointer relative top-[5.5px]" onClick={handleEdit}>{name}</p>
+				<p className="text-lg cursor-pointer relative top-[6.25px] text-slate-600" onClick={handleEdit}>{name}</p>
 			</div>
 			<Divider />
 		</>
