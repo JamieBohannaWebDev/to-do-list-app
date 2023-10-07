@@ -16,7 +16,7 @@ I've used the following technologies:
 - Redux Toolkit
 - Material UI where needed (mainly for things like the date picker and icons)
 
-Data is stored locally via sessionStorage instead of building out a whole backend in Node.
+Data is stored locally via Redux and local state instead of building out a whole backend in Node.
 You are, afterall, interested in my frontend skills.😊
 
 Furthermore, it's worth nothing that usually in my role as Lead Engineer, I'm responsible for demoing the product to clients/stakeholders. 
