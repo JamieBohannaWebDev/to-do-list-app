@@ -1,46 +1,40 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 import { AddRounded } from '@mui/icons-material';
-import { TaskProps } from '../../interfaces/taskProps';
+import { taskSlice } from '../../slices/tasks/taskSlice';
+import { RootState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuid } from 'uuid';
+import { TaskStatus } from '../../interfaces/taskProps';
 import AddNewInput from '../atoms/addNewInput';
 import Task from '../atoms/task';
 
 const ToDoList = () => {
-	const [tasks, setTasks] = React.useState<TaskProps[]>([]);
+	const dispatch = useDispatch();
+	const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
 	const createNewTask = (value: string) => {
-		setTasks([
-			...tasks,
-			{
-				id: uuid(),
-				name: value,
-				status: 'due',
-				createdAt: new Date(),
-				requiredBy: new Date(),
-				completed: false,
-			},
-		]);
+		const newTask = {
+			id: uuid(),
+			name: value,
+			status: TaskStatus.DUE,
+			createdAt: new Date().toISOString(),
+			requiredBy: new Date().toISOString(),
+			completed: false,
+		};
+
+		dispatch(taskSlice.actions.addTask(newTask));
 	};
 
 	const completeTask = (id: string) => {
-		const updatedTasks = tasks.map((task) => {
-			if (task.id === id) {
-				return { ...task, completed: !task.completed };
-			}
-			return task;
-		});
-
-		setTasks(updatedTasks);
+		dispatch(taskSlice.actions.completeTask({ id }));
 	};
 
-	const incompleteTasks = React.useMemo(
-		() => tasks.filter((task) => !task.completed),
-		[tasks]
-	);
-	const completedTasks = React.useMemo(
-		() => tasks.filter((task) => task.completed),
-		[tasks]
-	);
+	const incompleteTasks = React.useMemo(() => {
+		return tasks.filter((task) => !task.completed);
+	}, [tasks]);
+	const completedTasks = React.useMemo(() => {
+		return tasks.filter((task) => task.completed);
+	}, [tasks]);
 
 	return (
 		<main className="flex p-5 w-full flex-col">
@@ -68,7 +62,9 @@ const ToDoList = () => {
 					onTaskCompletion={completeTask}
 				/>
 			))}
-			{completedTasks.length > 0 && <h3 className="text-xl font-bold mt-10">Completed</h3>}
+			{completedTasks.length > 0 && (
+				<h3 className="text-xl font-bold mt-10">Completed</h3>
+			)}
 
 			{completedTasks.map((task) => (
 				<Task
