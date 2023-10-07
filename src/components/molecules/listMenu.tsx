@@ -11,21 +11,21 @@ const ListMenu = () => {
 			<h3 className="mb-2 text-xs font-semibold uppercase">Lists</h3>
 			<MenuItem
 				icon={<SquareRounded color='error' />}
-				label={'Personal List'}
-				value={12}
-				onClickEvent={handleItemClick}
-			/>
-
-			<MenuItem
-				icon={<SquareRounded color='primary' />}
 				label={'Work List'}
 				value={12}
 				onClickEvent={handleItemClick}
 			/>
 
 			<MenuItem
+				icon={<SquareRounded color='primary' />}
+				label={'Personal List'}
+				value={12}
+				onClickEvent={handleItemClick}
+			/>
+
+			<MenuItem
 				icon={<SquareRounded color='warning' />}
-				label={'Home List'}
+				label={'Study List'}
 				value={12}
 				onClickEvent={handleItemClick}
 			/>
