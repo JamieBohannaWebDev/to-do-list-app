@@ -17,12 +17,12 @@ const SettingsMenu = () => {
 		<>
 			<MenuItem
 				icon={<SettingsRounded />}
-				label={'Settings'}
+				label='Settings'
 				onClickEvent={handleItemClick}
 			/>
 			<MenuItem
 				icon={<LogoutRounded />}
-				label={'Sign out'}
+				label='Sign out'
 				onClickEvent={handleItemClick}
 			/>
 			<Snackbar

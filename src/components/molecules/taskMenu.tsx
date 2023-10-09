@@ -56,28 +56,28 @@ const TaskMenu = () => {
 						color={overdueTasks.length > 0 ? 'error' : 'success'}
 					/>
 				}
-				label={'Overdue'}
+				label='Overdue'
 				value={overdueTasks.length}
 				onClickEvent={() => handleItemClick(FilterBy.OVERDUE)}
 			/>
 
 			<MenuItem
 				icon={<TodayRounded color={incompleteTasksForToday.length > 0 ? 'secondary' : 'success'} />}
-				label={'Due Today'}
+				label='Due Today'
 				value={incompleteTasksForToday.length}
 				onClickEvent={() => handleItemClick(FilterBy.DUE)}
 			/>
 
 			<MenuItem
 				icon={<WatchLaterRounded color={upcomingTasks.length > 0 ? 'info' : 'success'} />}
-				label={'Upcoming'}
+				label='Upcoming'
 				value={upcomingTasks.length}
 				onClickEvent={() => handleItemClick(FilterBy.NOTDUE)}
 			/>
 
 			<MenuItem
 				icon={<CheckCircleRounded color="success" />}
-				label={'Completed'}
+				label='Completed'
 				value={completedTasks.length}
 				onClickEvent={() => handleItemClick(FilterBy.COMPLETED)}
 			/>

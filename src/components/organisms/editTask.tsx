@@ -149,23 +149,23 @@ const EditTask = () => {
 						<p className="min-w-[100px] mt-3">Tags</p>
 						<div>
 							<MenuTag
-								label={'Easy'}
-								size={'small'}
-								color={'success'}
+								label='Easy'
+								size='small'
+								color='success'
 								variant={calculateTagVariant('Easy')}
 								onClickEvent={() => handleTagSelection('Easy')}
 							/>
 							<MenuTag
-								label={'Normal'}
-								size={'small'}
-								color={'info'}
+								label='Normal'
+								size='small'
+								color='info'
 								variant={calculateTagVariant('Normal')}
 								onClickEvent={() => handleTagSelection('Normal')}
 							/>
 							<MenuTag
-								label={'Hard'}
-								size={'small'}
-								color={'error'}
+								label='Hard'
+								size='small'
+								color='error'
 								variant={calculateTagVariant('Hard')}
 								onClickEvent={() => handleTagSelection('Hard')}
 							/>
