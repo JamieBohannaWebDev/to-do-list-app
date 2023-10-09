@@ -4,7 +4,7 @@ import { SettingsRounded, LogoutRounded } from '@mui/icons-material';
 import React from 'react';
 
 const SettingsMenu = () => {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = React.useState<boolean>(false);
 
 	const handleItemClick = () => {
 		setOpen(true);
