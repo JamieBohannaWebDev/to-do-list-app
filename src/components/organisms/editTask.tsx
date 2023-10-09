@@ -34,6 +34,7 @@ const EditTask = () => {
 
 	const dispatch = useDispatch();
 
+	// Used for setting intitial state when task loads
 	React.useEffect(() => {
 		if (selectedTask) {
 			setSelectedList(selectedTask.listType || 'None');
@@ -44,12 +45,14 @@ const EditTask = () => {
 		}
 	}, [selectedTask]);
 
+	// Used for dispatching saved task to store
 	React.useEffect(() => {
 		if (updatedTask?.id) {
 			dispatch(taskSlice.actions.saveTask(updatedTask));
 		}
 	}, [updatedTask, dispatch]);
 
+	// Used for calculating and constructing obj to be saved
 	const handleSaveTask = () => {
 		if (selectedTask?.id) {
 			const today = moment().startOf('day');
