@@ -94,7 +94,7 @@ const ToDoList = () => {
 	}
 
 	const taskLengthHelper = React.useMemo(() => {
-		if (filterBy === 'not due') return incompleteUpcomingTasks.length
+		if (filterBy === 'not due') return incompleteUpcomingTasks.length;
 		if (filterBy === 'completed') return completedFilteredTasks.length;
 		return incompleteFilteredTasks.length;
 	}, [filterBy, incompleteFilteredTasks.length, incompleteUpcomingTasks.length, completedFilteredTasks.length]);
