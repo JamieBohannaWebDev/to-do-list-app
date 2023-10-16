@@ -18,7 +18,7 @@ const ToDoList = () => {
 	const filteredTasks = React.useMemo(() => {
 		if (!filterBy) return tasks;
 
-		switch (filterBy) {
+		switch (filterBy.toLocaleLowerCase()) {
 			case 'completed':
 				setTitle('Completed Tasks');
 				return tasks.filter(task => task.completed);

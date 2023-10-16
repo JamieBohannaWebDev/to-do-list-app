@@ -6,7 +6,14 @@ const AddNewInput = ({icon, placeholder, onEnterEvent}: AddNewInputProps) => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && inputRef.current) {
-      onEnterEvent(inputRef.current.value);
+      // Parse the string, and if there is commas, then capture that, splice, put into an array, loop over that array for the onEnterEvent.
+      let listOfTasks = inputRef.current.value.split(", ");
+
+      if (listOfTasks) {
+        listOfTasks.forEach((task) => {
+          onEnterEvent(task);
+        })
+      }
       inputRef.current.value = '';
     }
   }
