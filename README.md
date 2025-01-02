@@ -29,7 +29,7 @@ Jamie Bohanna
 
 ## Running the app
 
-Nothing special, just fire off `npm run start` and you're good to go!
+Nothing special, just fire off `npm install` to install dependancies, then `npm run start` to run the project and you're good to go!
 
 ## Project structure
 ```
